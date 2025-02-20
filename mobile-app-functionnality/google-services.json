@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "54971815311",
+    "project_id": "react-native-estiam-exam",
+    "storage_bucket": "react-native-estiam-exam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54971815311:android:29e64d4b81813fb0e1a7fa",
+        "android_client_info": {
+          "package_name": "com.galaxies.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54971815311-v3og5838e1arvqitjcpsrgfum03875s4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX2OvaZXS3EMnN_zFHQBBeBHqF7HNu8HY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54971815311-v3og5838e1arvqitjcpsrgfum03875s4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
