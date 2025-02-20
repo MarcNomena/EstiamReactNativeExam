@@ -9,14 +9,21 @@ import {
   KeyboardAvoidingView, Image, StyleSheet, Platform,
   Button
 } from 'react-native';
+import {useAuth} from '@/context/AuthContext';
+
 export default function SignInScreen() {
 
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [error,setError] = useState('');
+  const{login} = useAuth();
 
 
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    login(email,password).catch((error) => {
+      setError(error.message);
+    });
+  };
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
