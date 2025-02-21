@@ -1,6 +1,6 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -18,6 +18,12 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
+  const pathname = usePathname();
+
+  const noSharedLayoutPaths = ['/(tabs)/index', '/(tabs)/signup'];
+
+  const isAuthPage = noSharedLayoutPaths.includes(pathname);
+
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
@@ -32,9 +38,15 @@ export default function RootLayout() {
     <AuthProvider>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        {
+          isAuthPage ? (
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          ) : (
+            <Stack.Screen name="product" options={{ headerShown: false }} />
+          )
+        }
           <Stack.Screen name="+not-found" />         
-          
+        
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

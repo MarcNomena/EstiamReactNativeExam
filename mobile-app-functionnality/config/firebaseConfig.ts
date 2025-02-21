@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getFirestore} from "firebase/firestore";
 const firebaseConfig = {
     apiKey: "AIzaSyBBxmWGwOJ_kkOTKzWCxN6jE8Y4QEcFecE",
     authDomain: "react-native-estiam-exam.firebaseapp.com",
@@ -16,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const authInstance = getAuth(app);
+const db = getFirestore(app);
 // Get the Auth instance
 
-export { authInstance };
+export { authInstance, db };

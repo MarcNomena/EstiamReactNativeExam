@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
-import { authInstance } from '@/config/firebaseConfig'; // Adjust the import path as needed
+import { authInstance } from '@/config/firebaseConfig';
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from 'firebase/auth';
 import * as SecureStore from 'expo-secure-store';
+import { router } from 'expo-router';
+
   interface AuthContextType {
     user: User | null| undefined;
     login: (email: string, password: string) => Promise<void>;
@@ -24,19 +26,19 @@ import * as SecureStore from 'expo-secure-store';
     const login = async (email:string, password:string) => {
       try {
         const userCredential = await signInWithEmailAndPassword(authInstance, email, password);
-        console.log('User signed in:', userCredential.user);
+       // console.log('User signed in:', userCredential.user);
 
         setUser(userCredential.user);
-        const idToken = await userCredential.user.getIdToken(); // Get the ID token
+        const idToken = await userCredential.user.getIdToken(); 
         await SecureStore.setItemAsync('auth_token', idToken);
 
-      
+        router.push('./product'); 
       } catch (error) {
         console.error('Error signing in:', error);
           await signOut(authInstance);
           setUser(null);
           await SecureStore.deleteItemAsync('auth_token');
-          // Handle the error (e.g., show an error message to the user)
+         
       }
     };
   
@@ -44,6 +46,7 @@ import * as SecureStore from 'expo-secure-store';
       await signOut(authInstance);
       setUser(null);
       await SecureStore.deleteItemAsync('auth_token');
+      router.push('./(tabs)/'); 
     };
   
     return (
@@ -56,7 +59,7 @@ import * as SecureStore from 'expo-secure-store';
   export const useAuth = () => {
     const context = useContext(AuthContext);
     if (context === undefined) {
-      throw new Error("useUser must be used within a AuthContext.Provider");
+      throw new Error("useAuth must be used within a AuthContext.Provider");
     }
     return context;
   };
