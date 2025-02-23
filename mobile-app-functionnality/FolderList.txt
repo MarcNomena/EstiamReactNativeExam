@@ -1,0 +1,13 @@
+.expo
+apk file
+app
+assets
+components
+config
+constants
+context
+hooks
+interface
+node_modules
+scripts
+utils

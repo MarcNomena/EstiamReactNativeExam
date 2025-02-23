@@ -5,6 +5,7 @@ import {
   } from 'react-native';
   import { Text, Card, Button, Icon } from '@rneui/themed';
 
+
 interface Product {
   name: string;
   image: string;
@@ -22,6 +23,7 @@ export const CustomCards = ({ name, image, description }: Product) => {
               resizeMode="contain"
               source={{ uri: image }}
             />
+            
           <Text >{description}</Text>
          </View>
     </View>
